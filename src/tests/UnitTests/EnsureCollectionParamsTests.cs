@@ -1729,7 +1729,183 @@ namespace UnitTests
         }
         #endregion
 
+        #region IsInAscending/Descending Order
+        [Fact]
+        public void IsInAscendingOrder_Array_Should_Not_Throw()
+        {
+            var values = new[] { 1, 2, 3 };
 
+            ShouldNotThrow(
+                ()=>Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                ()=>EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                ()=>Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_Array_Should_Throw()
+        {
+            var values = new[] { 3, 2, 1 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_List_Should_Not_Throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_List_Should_Throw()
+        {
+            IList<int> values = new List<int> { 3, 2, 1 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_Collection_Should_Not_Throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_Collection_Should_Throw()
+        {
+            ICollection<int> values = new Collection<int> { 3, 2, 1 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_Dictionary_Should_Not_Throw()
+        {
+            IDictionary<int, int> values = new Dictionary<int, int> { { 1, 2 }, { 2, 3 }, { 3, 4 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInAscendingOrder_Dictionary_Should_Throw()
+        {
+            IDictionary<int, int> values = new Dictionary<int, int> { { 4, 3 }, { 3, 2 }, { 2, 1 } };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                () => Ensure.Collection.IsInAscendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInAscendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInAscendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Array_Should_Not_Throw()
+        {
+            var values = new[] { 3, 2, 1 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Array_Should_Throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_List_Should_Not_Throw()
+        {
+            IList<int> values = new List<int> { 3, 2, 1 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_List_Should_Throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Collection_Should_Not_Throw()
+        {
+            ICollection<int> values = new Collection<int> { 3, 2, 1 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Collection_Should_Throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Dictionary_Should_Not_Throw()
+        {
+            IDictionary<int, int> values = new Dictionary<int, int> { { 4, 3 }, { 3, 2 }, { 2, 1 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+
+        [Fact]
+        public void IsInDescendingOrder_Dictionary_Should_Throw()
+        {
+            IDictionary<int, int> values = new Dictionary<int, int> { { 1, 2 }, { 2, 3 }, { 3, 4 } };
+
+            ShouldThrow<ArgumentException>(ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                () => Ensure.Collection.IsInDescendingOrder(values, paramName: ParamName),
+                () => EnsureArg.IsInDescendingOrder(values, paramName: ParamName),
+                () => Ensure.That(values, ParamName).IsInDescendingOrder());
+        }
+        #endregion
 
         [Fact]
         public void ContainsKey_When_key_does_not_exist_in_Dictionary_It_throws_ArgumentException()

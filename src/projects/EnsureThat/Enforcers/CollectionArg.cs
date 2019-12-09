@@ -1,10 +1,10 @@
-﻿using System;
+﻿using EnsureThat.Annotations;
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using EnsureThat.Annotations;
-using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
@@ -808,7 +808,7 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
-        
+
         [NotNull]
         [ContractAnnotation("value:null => halt")]
         public T[] SizeIsGte<T>([ValidatedNotNull]T[] value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
@@ -1118,7 +1118,213 @@ namespace EnsureThat.Enforcers
         }
         #endregion
 
+        #region IsInAscending/Descending Order
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T[] IsInAscendingOrder<T>([ValidatedNotNull]T[] value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
 
+            if (value.Length < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            for (var i = 1; i < value.Length; i++)
+                if (comparer.Compare(value[i - 1], value[i]) > 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T IsInAscendingOrder<T>([ValidatedNotNull]T value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection, IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+
+            var values = new T[value.Count];
+            value.CopyTo(values, 0);
+
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(values[i - 1], values[i]) > 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ICollection<T> IsInAscendingOrder<T>([ValidatedNotNull]ICollection<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            var values = value.ToArray();
+
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(values[i - 1], values[i]) > 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IList<T> IsInAscendingOrder<T>([ValidatedNotNull] IList<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(value[i - 1], value[i]) > 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IDictionary<TKey, TValue> IsInAscendingOrder<TKey, TValue>([ValidatedNotNull]IDictionary<TKey, TValue> value, IComparer<TKey> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where TKey : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<TKey>.Default;
+            var values = value.Keys.ToArray();
+
+            for (var i = 1; i < values.Length; i++)
+                if (comparer.Compare(values[i - 1], values[i]) > 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInAscendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T[] IsInDescendingOrder<T>([ValidatedNotNull]T[] value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Length < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            for (var i = 1; i < value.Length; i++)
+                if (comparer.Compare(value[i - 1], value[i]) < 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T IsInDescendingOrder<T>([ValidatedNotNull]T value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection, IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+
+            var values = new T[value.Count];
+            value.CopyTo(values, 0);
+
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(values[i - 1], values[i]) < 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ICollection<T> IsInDescendingOrder<T>([ValidatedNotNull]ICollection<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            var values = value.ToArray();
+
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(values[i - 1], values[i]) < 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IList<T> IsInDescendingOrder<T>([ValidatedNotNull] IList<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<T>.Default;
+            for (var i = 1; i < value.Count; i++)
+                if (comparer.Compare(value[i - 1], value[i]) < 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IDictionary<TKey, TValue> IsInDescendingOrder<TKey, TValue>([ValidatedNotNull]IDictionary<TKey, TValue> value, IComparer<TKey> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where TKey : IComparable
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count < 1) return value;
+
+            comparer = comparer ?? Comparer<TKey>.Default;
+            var values = value.Keys.ToArray();
+
+            for (var i = 1; i < values.Length; i++)
+                if (comparer.Compare(values[i - 1], values[i]) < 0)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_IsInDescendingOrder_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+        #endregion
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]

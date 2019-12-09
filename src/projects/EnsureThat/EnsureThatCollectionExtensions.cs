@@ -227,6 +227,38 @@ namespace EnsureThat
             => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
         #endregion
 
+        #region IsInAscending/Descending Order
+        public static void IsInAscendingOrder<T>(this in Param<T[]> param, IComparer<T> comparer = null) where T:IComparable
+            => Ensure.Collection.IsInAscendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInAscendingOrder<T>(this in Param<T> param, IComparer<T> comparer = null) where T : class, ICollection, IComparable
+            => Ensure.Collection.IsInAscendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInAscendingOrder<T>(this in Param<ICollection<T>> param, IComparer<T> comparer = null) where T:IComparable
+            => Ensure.Collection.IsInAscendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInAscendingOrder<T>(this in Param<IList<T>> param, IComparer<T> comparer = null) where T:IComparable
+            => Ensure.Collection.IsInAscendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInAscendingOrder<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, IComparer<TKey> comparer = null) where TKey:IComparable
+        => Ensure.Collection.IsInAscendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInDescendingOrder<T>(this in Param<T[]> param, IComparer<T> comparer = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInDescendingOrder<T>(this in Param<T> param, IComparer<T> comparer = null) where T : class, ICollection, IComparable
+            => Ensure.Collection.IsInDescendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInDescendingOrder<T>(this in Param<ICollection<T>> param, IComparer<T> comparer = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInDescendingOrder<T>(this in Param<IList<T>> param, IComparer<T> comparer = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+
+        public static void IsInDescendingOrder<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, IComparer<TKey> comparer = null) where TKey : IComparable
+        => Ensure.Collection.IsInDescendingOrder(param.Value, comparer, param.Name, param.OptsFn);
+        #endregion
+
 
 
         public static void ContainsKey<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, TKey key)

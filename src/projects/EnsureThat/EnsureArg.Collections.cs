@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EnsureThat.Annotations;
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using EnsureThat.Annotations;
-using JetBrains.Annotations;
 
 namespace EnsureThat
 {
@@ -352,6 +352,57 @@ namespace EnsureThat
             => Ensure.Collection.SizeIsLte(value, expected, paramName, optsFn);
         #endregion
 
+        #region IsInAscending/Descending Order
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T[] IsInAscendingOrder<T>([ValidatedNotNull]T[] value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInAscendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T IsInAscendingOrder<T>([ValidatedNotNull]T value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection, IComparable
+    => Ensure.Collection.IsInAscendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ICollection<T> IsInAscendingOrder<T>([ValidatedNotNull]ICollection<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInAscendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IList<T> IsInAscendingOrder<T>([ValidatedNotNull] IList<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInAscendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IDictionary<TKey, TValue> IsInAscendingOrder<TKey, TValue>([ValidatedNotNull]IDictionary<TKey, TValue> value, IComparer<TKey> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where TKey : IComparable
+            => Ensure.Collection.IsInAscendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T[] IsInDescendingOrder<T>([ValidatedNotNull]T[] value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T IsInDescendingOrder<T>([ValidatedNotNull]T value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection, IComparable
+            => Ensure.Collection.IsInDescendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ICollection<T> IsInDescendingOrder<T>([ValidatedNotNull]ICollection<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IList<T> IsInDescendingOrder<T>([ValidatedNotNull] IList<T> value, IComparer<T> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable
+            => Ensure.Collection.IsInDescendingOrder(value, comparer, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IDictionary<TKey, TValue> IsInDescendingOrder<TKey, TValue>([ValidatedNotNull]IDictionary<TKey, TValue> value, IComparer<TKey> comparer = null, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where TKey : IComparable
+            => Ensure.Collection.IsInDescendingOrder(value, comparer, paramName, optsFn);
+        #endregion
 
 
         [NotNull]

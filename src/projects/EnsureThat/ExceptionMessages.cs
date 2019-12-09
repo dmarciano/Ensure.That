@@ -16,6 +16,8 @@
         public static string Collections_SizeIsLt_Failed { get; } = "Expected size to be less than '{0}' but found '{1}'.";
         public static string Collections_SizeIsGte_Failed { get; } = "Expected size to be greater than, or equal to, '{0}' but found '{1}'.";
         public static string Collections_SizeIsLte_Failed { get; } = "Expected size to be less than, or equal to, '{0}' but found '{1}'.";
+        public static string Collections_IsInAscendingOrder_Failed { get; } = "The collection is not in ascending order.";
+        public static string Collections_IsInDescendingOrder_Failed { get; } = "The collection is not in descending order.";
 
         public static string Comp_Is_Failed { get; } = "Value '{0}' is not '{1}'.";
         public static string Comp_IsNot_Failed { get; } = "Value '{0}' is '{1}', which was not expected.";
