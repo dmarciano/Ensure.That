@@ -73,6 +73,162 @@ namespace EnsureThat
         public static void SizeIs<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
             => Ensure.Collection.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
+
+
+        #region SizeIsNot/SizeIsGt/Lt/Gte/Lte
+        public static void SizeIsNot<T>(this in Param<T[]> param, int expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<T[]> param, long expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<T> param, int expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<T> param, long expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<ICollection<T>> param, int expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<ICollection<T>> param, long expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<IList<T>> param, int expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<T>(this in Param<IList<T>> param, long expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, int expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsNot<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
+            => Ensure.Collection.SizeIsNot(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<T[]> param, int expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<T[]> param, long expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<T> param, int expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<T> param, long expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<ICollection<T>> param, int expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<ICollection<T>> param, long expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<IList<T>> param, int expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<T>(this in Param<IList<T>> param, long expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, int expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGt<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
+            => Ensure.Collection.SizeIsGt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<T[]> param, int expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<T[]> param, long expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<T> param, int expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<T> param, long expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<ICollection<T>> param, int expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<ICollection<T>> param, long expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<IList<T>> param, int expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<T>(this in Param<IList<T>> param, long expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, int expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLt<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
+            => Ensure.Collection.SizeIsLt(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<T[]> param, int expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<T[]> param, long expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<T> param, int expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<T> param, long expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<ICollection<T>> param, int expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<ICollection<T>> param, long expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<IList<T>> param, int expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<T>(this in Param<IList<T>> param, long expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, int expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsGte<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
+            => Ensure.Collection.SizeIsGte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<T[]> param, int expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<T[]> param, long expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<T> param, int expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<T> param, long expected) where T : class, ICollection
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<ICollection<T>> param, int expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<ICollection<T>> param, long expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<IList<T>> param, int expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<T>(this in Param<IList<T>> param, long expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, int expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void SizeIsLte<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, long expected)
+            => Ensure.Collection.SizeIsLte(param.Value, expected, param.Name, param.OptsFn);
+        #endregion
+
+
+
         public static void ContainsKey<TKey, TValue>(this in Param<IDictionary<TKey, TValue>> param, TKey key)
             => Ensure.Collection.ContainsKey(param.Value, key, param.Name, param.OptsFn);
 

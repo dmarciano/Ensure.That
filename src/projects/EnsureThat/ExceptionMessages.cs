@@ -11,6 +11,11 @@
         public static string Collections_ContainsKey_Failed { get; } = "Key '{0}' does not exist.";
         public static string Collections_HasItemsFailed { get; } = "Empty collection is not allowed.";
         public static string Collections_SizeIs_Failed { get; } = "Expected size '{0}' but found '{1}'.";
+        public static string Collections_SizeIsNot_Failed { get; } = "Expect size to not be '{0}' but found '{1}'.";
+        public static string Collections_SizeIsGt_Failed { get; } = "Expected size to be greater than '{0}' but found '{1}'.";
+        public static string Collections_SizeIsLt_Failed { get; } = "Expected size to be less than '{0}' but found '{1}'.";
+        public static string Collections_SizeIsGte_Failed { get; } = "Expected size to be greater than, or equal to, '{0}' but found '{1}'.";
+        public static string Collections_SizeIsLte_Failed { get; } = "Expected size to be less than, or equal to, '{0}' but found '{1}'.";
 
         public static string Comp_Is_Failed { get; } = "Value '{0}' is not '{1}'.";
         public static string Comp_IsNot_Failed { get; } = "Value '{0}' is '{1}', which was not expected.";

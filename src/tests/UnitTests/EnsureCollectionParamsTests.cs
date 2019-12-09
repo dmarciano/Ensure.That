@@ -535,6 +535,1202 @@ namespace UnitTests
                 () => Ensure.That(values, ParamName).SizeIs(1));
         }
 
+
+
+        #region SizeIsNot/SizeIsGt/Lt/Gte/Lte
+        [Fact]
+        public void SizeIsNot_When_matching_length_of_array_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(values, values.Length-1, ParamName),
+                () => EnsureArg.SizeIsNot(values, values.Length-1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(values.Length-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3 };
+            var expected = values.Length;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, values.Length),
+                () => Ensure.Collection.SizeIsNot(values, expected, ParamName),
+                () => EnsureArg.SizeIsNot(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_List_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(values, values.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(values, values.Count-1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(values.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_List_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsNot(values, expected, ParamName),
+                () => EnsureArg.SizeIsNot(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(values, values.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(values, values.Count-1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(values.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsNot(values, expected, ParamName),
+                () => EnsureArg.SizeIsNot(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(values, values.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(values, values.Count-1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(values.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsNot(values, expected, ParamName),
+                () => EnsureArg.SizeIsNot(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(values, values.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(values, values.Count-1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(values.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsNot(values, expected, ParamName),
+                () => EnsureArg.SizeIsNot(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(dict, dict.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(dict, dict.Count-1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsNot(dict.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsNot(dict, expected, ParamName),
+                () => EnsureArg.SizeIsNot(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsNot(dict, dict.Count-1, ParamName),
+                () => EnsureArg.SizeIsNot(dict, dict.Count-1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsNot(dict.Count-1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsNot_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsNot(dict, expected, ParamName),
+                () => EnsureArg.SizeIsNot(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsNot(expected));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_Array_is_null_It_should_throw_ArgumentNullException()
+        {
+            int[] values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_ICollection_is_null_It_should_throw_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_Collection_is_null_It_should_throw_ArgumentNullException()
+        {
+            Collection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_IList_is_null_It_should_throw_ArgumentNullException()
+        {
+            IList<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_List_is_null_It_should_throw_ArgumentNullException()
+        {
+            List<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_IDictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            IDictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsNot_When_Dictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            Dictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsNot(values, 1, ParamName),
+                () => EnsureArg.SizeIsNot(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsNot(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_length_of_array_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(values, values.Length - 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, values.Length - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(values.Length - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3 };
+            var expected = values.Length;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, values.Length),
+                () => Ensure.Collection.SizeIsGt(values, expected, ParamName),
+                () => EnsureArg.SizeIsGt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_List_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(values, values.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, values.Count - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_List_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsGt(values, expected, ParamName),
+                () => EnsureArg.SizeIsGt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(values, values.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, values.Count - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsGt(values, expected, ParamName),
+                () => EnsureArg.SizeIsGt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(values, values.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, values.Count - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsGt(values, expected, ParamName),
+                () => EnsureArg.SizeIsGt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(values, values.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, values.Count - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsGt(values, expected, ParamName),
+                () => EnsureArg.SizeIsGt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(dict, dict.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(dict, dict.Count - 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGt(dict.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsGt(dict, expected, ParamName),
+                () => EnsureArg.SizeIsGt(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGt(dict, dict.Count - 1, ParamName),
+                () => EnsureArg.SizeIsGt(dict, dict.Count - 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGt(dict.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGt_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsGt(dict, expected, ParamName),
+                () => EnsureArg.SizeIsGt(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGt(expected));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_Array_is_null_It_should_throw_ArgumentNullException()
+        {
+            int[] values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_ICollection_is_null_It_should_throw_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_Collection_is_null_It_should_throw_ArgumentNullException()
+        {
+            Collection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_IList_is_null_It_should_throw_ArgumentNullException()
+        {
+            IList<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_List_is_null_It_should_throw_ArgumentNullException()
+        {
+            List<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_IDictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            IDictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsGt_When_Dictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            Dictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGt(values, 1, ParamName),
+                () => EnsureArg.SizeIsGt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_length_of_array_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(values, values.Length + 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, values.Length + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(values.Length + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3 };
+            var expected = values.Length;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, values.Length),
+                () => Ensure.Collection.SizeIsLt(values, expected, ParamName),
+                () => EnsureArg.SizeIsLt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_List_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(values, values.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, values.Count + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_List_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsLt(values, expected, ParamName),
+                () => EnsureArg.SizeIsLt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(values, values.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, values.Count + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsLt(values, expected, ParamName),
+                () => EnsureArg.SizeIsLt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(values, values.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, values.Count + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsLt(values, expected, ParamName),
+                () => EnsureArg.SizeIsLt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(values, values.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, values.Count + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, values.Count),
+                () => Ensure.Collection.SizeIsLt(values, expected, ParamName),
+                () => EnsureArg.SizeIsLt(values, expected, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(dict, dict.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(dict, dict.Count + 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLt(dict.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsLt(dict, expected, ParamName),
+                () => EnsureArg.SizeIsLt(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLt(dict, dict.Count + 1, ParamName),
+                () => EnsureArg.SizeIsLt(dict, dict.Count + 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLt(dict.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLt_Failed, expected, dict.Count),
+                () => Ensure.Collection.SizeIsLt(dict, expected, ParamName),
+                () => EnsureArg.SizeIsLt(dict, expected, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLt(expected));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_Array_is_null_It_should_throw_ArgumentNullException()
+        {
+            int[] values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_ICollection_is_null_It_should_throw_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_Collection_is_null_It_should_throw_ArgumentNullException()
+        {
+            Collection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_IList_is_null_It_should_throw_ArgumentNullException()
+        {
+            IList<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_List_is_null_It_should_throw_ArgumentNullException()
+        {
+            List<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_IDictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            IDictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsLt_When_Dictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            Dictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLt(values, 1, ParamName),
+                () => EnsureArg.SizeIsLt(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLt(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_length_of_array_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(values, values.Length, ParamName),
+                () => EnsureArg.SizeIsGte(values, values.Length, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(values.Length));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3 };
+            var expected = values.Length;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected+1, values.Length),
+                () => Ensure.Collection.SizeIsGte(values, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, expected + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_List_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsGte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_List_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, values.Count),
+                () => Ensure.Collection.SizeIsGte(values, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, expected + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsGte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, values.Count),
+                () => Ensure.Collection.SizeIsGte(values, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, expected + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsGte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, values.Count),
+                () => Ensure.Collection.SizeIsGte(values, expected+1, ParamName),
+                () => EnsureArg.SizeIsGte(values, expected+1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsGte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(values.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, values.Count),
+                () => Ensure.Collection.SizeIsGte(values, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, expected + 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(dict, dict.Count, ParamName),
+                () => EnsureArg.SizeIsGte(dict, dict.Count, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGte(dict.Count));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, dict.Count),
+                () => Ensure.Collection.SizeIsGte(dict, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(dict, expected + 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsGte(dict, dict.Count, ParamName),
+                () => EnsureArg.SizeIsGte(dict, dict.Count, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGte(dict.Count - 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsGte_Failed, expected + 1, dict.Count),
+                () => Ensure.Collection.SizeIsGte(dict, expected + 1, ParamName),
+                () => EnsureArg.SizeIsGte(dict, expected + 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsGte(expected + 1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_Array_is_null_It_should_throw_ArgumentNullException()
+        {
+            int[] values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_ICollection_is_null_It_should_throw_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_Collection_is_null_It_should_throw_ArgumentNullException()
+        {
+            Collection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_IList_is_null_It_should_throw_ArgumentNullException()
+        {
+            IList<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_List_is_null_It_should_throw_ArgumentNullException()
+        {
+            List<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_IDictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            IDictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsGte_When_Dictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            Dictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsGte(values, 1, ParamName),
+                () => EnsureArg.SizeIsGte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsGte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_length_of_array_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(values, values.Length, ParamName),
+                () => EnsureArg.SizeIsLte(values, values.Length, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(values.Length + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3 };
+            var expected = values.Length;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, values.Length),
+                () => Ensure.Collection.SizeIsLte(values, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, expected - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_List_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsLte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_List_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, values.Count),
+                () => Ensure.Collection.SizeIsLte(values, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, expected - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsLte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, values.Count),
+                () => Ensure.Collection.SizeIsLte(values, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, expected - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsLte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected-1, values.Count),
+                () => Ensure.Collection.SizeIsLte(values, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, expected - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(values, values.Count, ParamName),
+                () => EnsureArg.SizeIsLte(values, values.Count, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(values.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, values.Count),
+                () => Ensure.Collection.SizeIsLte(values, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, expected - 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(dict, dict.Count, ParamName),
+                () => EnsureArg.SizeIsLte(dict, dict.Count, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLte(dict.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, dict.Count),
+                () => Ensure.Collection.SizeIsLte(dict, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(dict, expected - 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            ShouldNotThrow(
+                () => Ensure.Collection.SizeIsLte(dict, dict.Count, ParamName),
+                () => EnsureArg.SizeIsLte(dict, dict.Count, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLte(dict.Count + 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count;
+
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIsLte_Failed, expected - 1, dict.Count),
+                () => Ensure.Collection.SizeIsLte(dict, expected - 1, ParamName),
+                () => EnsureArg.SizeIsLte(dict, expected - 1, ParamName),
+                () => Ensure.That(dict, ParamName).SizeIsLte(expected - 1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_Array_is_null_It_should_throw_ArgumentNullException()
+        {
+            int[] values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_ICollection_is_null_It_should_throw_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_Collection_is_null_It_should_throw_ArgumentNullException()
+        {
+            Collection<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_IList_is_null_It_should_throw_ArgumentNullException()
+        {
+            IList<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_List_is_null_It_should_throw_ArgumentNullException()
+        {
+            List<int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_IDictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            IDictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+
+        [Fact]
+        public void SizeIsLte_When_Dictionary_is_null_It_should_throw_ArgumentNullException()
+        {
+            Dictionary<string, int> values = null;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.SizeIsLte(values, 1, ParamName),
+                () => EnsureArg.SizeIsLte(values, 1, ParamName),
+                () => Ensure.That(values, ParamName).SizeIsLte(1));
+        }
+        #endregion
+
+
+
         [Fact]
         public void ContainsKey_When_key_does_not_exist_in_Dictionary_It_throws_ArgumentException()
         {
